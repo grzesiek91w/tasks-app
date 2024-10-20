@@ -1,0 +1,25 @@
+<div *ngIf="car">
+
+    <h4>{{ car.name }} {{ car.model }}</h4>
+    
+    <ul>
+
+      <li *ngFor="let service of car.services">
+
+        {{ service.part }} - {{ service.cost |  currency:'PLN':'symbol' }}
+
+      </li>
+
+    </ul>
+
+    <form [formGroup]="serviceForm" (ngSubmit)="addService()">
+
+      <input formControlName="part" placeholder="Service Part" />
+
+      <input formControlName="cost" placeholder="Service Cost" type="number" />
+
+      <button type="submit">Add Service</button>
+
+    </form>
+
+  </div>

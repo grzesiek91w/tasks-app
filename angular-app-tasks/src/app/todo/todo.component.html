@@ -1,0 +1,46 @@
+<div>
+
+    <h2>Task List</h2>
+  
+    <form (submit)="addTask()">
+  
+      <input [(ngModel)]="newTask.title" name="taskTitle" placeholder="Task Title" required />
+  
+      <input [(ngModel)]="newTask.description" name="taskDescription" placeholder="Task Description" />
+  
+      <button type="submit">Add Task</button>
+  
+    </form>
+  
+  
+    <ul>
+  
+      <li *ngFor="let task of tasks">
+  
+        <div *ngIf="editingTask?.id !== task.id; else editTemplate">
+  
+          <span>{{ task.title }} - {{ task.description }}</span>
+  
+          <button (click)="editTask(task)">Edit</button>
+  
+          <button (click)="deleteTask(task.id)">Delete</button>
+  
+        </div>
+  
+        <ng-template #editTemplate>
+  
+          <input [(ngModel)]="editingTask!.title" (blur)="updateTask()" />
+  
+          <input [(ngModel)]="editingTask!.description" (blur)="updateTask()" />
+  
+          <button (click)="updateTask()">Save</button>
+  
+          <button (click)="editingTask = null">Cancel</button>
+  
+        </ng-template>
+  
+      </li>
+  
+    </ul>
+  
+  </div>
