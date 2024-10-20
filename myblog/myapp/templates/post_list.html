@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static './styles.css' %}">
+    <title>Blog Posts</title>
+
+</head>
+
+<body>
+
+    <h1>Blog Posts</h1>
+
+    <a href="{% url 'post_create' %}">Create New Post</a>
+
+    <ul>
+
+        {% for post in posts %}
+
+            <li>
+
+                <a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a> by {{ post.author }} on {{ post.created_at }}
+
+            </li>
+
+        {% endfor %}
+
+    </ul>
+
+    <p>Do you want to log out? <a href="{% url 'logout' %}">Logout here</a>.</p>
+</body>
+
+</html>
